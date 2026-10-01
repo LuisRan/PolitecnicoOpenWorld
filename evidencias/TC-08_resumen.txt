@@ -1,0 +1,13 @@
+TC-08 - verificaciones locales (1-oct-2026) - SHA probado c9647041c1da769ddc2722e409850206f93fe2cb
+Entorno: macOS 26.6.2 arm64, JDK = JBR de Android Studio (JAVA_HOME), Gradle 9.5.0 (wrapper)
+
+bash tools/check_kmp_test_names.sh        -> OK (nombres compatibles con Kotlin/Native)
+./gradlew :app:assembleDebug :app:testDebugUnitTest :shared:testAndroidHostTest --stacktrace
+                                          -> BUILD SUCCESSFUL in 1m 21s (log completo: TC-08_gradle.txt)
+Resultados leidos de los XML de pruebas (app/build/test-results, shared/build/test-results):
+  :app    testDebugUnitTest      136 pruebas, 0 omitidas, 0 fallos, 0 errores
+  SfLanAddressTest                11 pruebas, 0 fallos (nuevas de este PR)
+  :shared testAndroidHostTest    217 pruebas, 0 omitidas, 0 fallos, 0 errores
+detekt 1.23.8 (CLI del repo, config detekt.yml + baseline.xml, input app/src/main/java y shared/src/commonMain/kotlin)
+                                          -> sin issues nuevos (exit 0)
+Nota: los warnings de compilacion del log son preexistentes (TransitSystemConfig.kt, deprecaciones); ninguno proviene de los archivos del cambio.
